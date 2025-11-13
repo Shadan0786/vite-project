@@ -1,39 +1,29 @@
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { Car } from "lucide-react";
 
 const Navbar = () => {
-  return (
-    <nav className="flex items-center justify-between px-8 py-4 shadow-sm bg-white">
-      <div className="flex items-center space-x-2">
-        <div className="bg-blue-600 text-white rounded-lg p-2">
-          🚗
-        </div>
-        <h1 className="text-xl font-semibold text-gray-800">QuickRent</h1>
-      </div>
+    return (
+        <>
 
-      <div className="flex space-x-4">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `px-4 py-2 rounded-full ${
-              isActive ? "bg-gray-200 text-black" : "text-gray-600"
-            }`
-          }
-        >
-          Browse Cars
-        </NavLink>
-        <NavLink
-          to="/my-rentals"
-          className={({ isActive }) =>
-            `px-4 py-2 rounded-full ${
-              isActive ? "bg-gray-200 text-black" : "text-gray-600"
-            }`
-          }
-        >
-          My Rentals
-        </NavLink>
-      </div>
-    </nav>
-  );
+            <div className="max-w-7xl bg-white mx-auto flex items-center justify-between px-6 py-4">
+              
+                <div className="flex items-center space-x-3">
+                    <div className="bg-blue-600 text-white p-2 rounded-xl">
+                        <Car className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h1 className="text-xl font-semibold text-gray-900">QuickRent</h1>
+                        <p className="text-sm text-gray-500">
+                            Your premium car rental service
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </>
+    );
 };
 
 export default Navbar;

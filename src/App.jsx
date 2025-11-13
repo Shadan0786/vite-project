@@ -1,25 +1,33 @@
-import { useState } from 'react'
-import './App.css'
-
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import BrowseCars from "./pages/BrowseCars";
-import MyRentals from "./pages/MyRentals";
-import Navbar from "./components/Navbar";
+import { useState } from 'react';
+import './App.css';
+import Navbar from './components/Navbar';
+import NavTabs from './components/NavTabs';
+import FilterSection from './components/FilterSection';
+import CarList from './components/CarList';
+import MyRentals from './components/MyRentals';
 
 function App() {
+
+  const [activeTab, setActiveTab] = useState('browse');
+
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<BrowseCars />} />
-          <Route path="/my-rentals" element={<MyRentals />} />
-          <Route path="*" element={<div className="text-center mt-10">Page Not Found</div>} />
-        </Routes>
-      </div>
-    </Router>
+    <div className='min-h-screen bg-gray-50'>
+      <Navbar />
+
+
+      <NavTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+
+
+      {activeTab === 'browse' && (
+        <>
+          <FilterSection />
+          <CarList />
+        </>
+      )}
+
+      {activeTab === 'rentals' && <MyRentals />}
+    </div>
   );
 }
 
 export default App;
-

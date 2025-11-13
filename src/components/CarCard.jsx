@@ -1,124 +1,82 @@
-// src/components/CarCard.jsx
-import React, { useState } from "react";
+import React from "react";
+import { Users, Gauge, Fuel } from "lucide-react";
 
 const CarCard = ({ car }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleRent = () => {
-    setShowModal(true);
-  };
-
-  const handleClose = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirm = () => {
-    alert(`You have rented ${car.name}!`);
-    setShowModal(false);
-  };
-
   return (
-    <>
-      {/* Card */}
-      <div className="relative bg-white shadow-md rounded-xl overflow-hidden transition transform hover:scale-105 hover:shadow-lg duration-300">
-        {/* Image Section */}
-        <div className="relative w-full h-52">
-          <img
-            src={car.image}
-            alt={car.name}
-            className="w-full h-full object-cover"
-          />
+    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition relative flex flex-col">
+      
+      <div className="relative">
+        <img
+          src={car.image}
+          alt={car.name}
+          className={`w-full h-48 object-cover ${
+            !car.available ? "opacity-60" : ""
+          }`}
+        />
 
-          {/* Availability overlay */}
-          {!car.available && (
-            <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-              <p className="text-white font-semibold text-lg">Not Available</p>
-            </div>
-          )}
-        </div>
-
-        {/* Details Section */}
-        <div className="p-4">
-          <h3 className="text-lg font-semibold text-gray-800">{car.name}</h3>
-          <p className="text-sm text-gray-500 mb-2">{car.brand}</p>
-
-          <div className="flex flex-wrap gap-2 text-xs text-gray-600">
-            <p>🚗 {car.type}</p>
-            <p>🪑 {car.seats} Seats</p>
-            <p>⚙️ {car.transmission}</p>
-            <p>⛽ {car.fuel}</p>
-          </div>
-
-          <div className="mt-3 text-xs text-gray-500">
-            {car.features?.map((feature, index) => (
-              <p key={index}>✔ {feature}</p>
-            ))}
-          </div>
-
-          {/* Rent Now Button */}
-          <div className="mt-4">
-            <button
-              onClick={handleRent}
-              disabled={!car.available}
-              className={`w-full py-2 rounded-lg text-white font-semibold transition duration-300 ${
-                car.available
-                  ? "bg-blue-600 hover:bg-blue-700"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
-            >
-              {car.available ? "Rent Now" : "Unavailable"}
-            </button>
-          </div>
-        </div>
+        {!car.available && (
+          <span className="absolute top-4 left-4 bg-gray-700 text-white text-xs px-3 py-1 rounded-full">
+            Not Available
+          </span>
+        )}
       </div>
 
-      {/* Modal */}
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-            <h2 className="text-xl font-semibold mb-4">Rent {car.name}</h2>
-            <p className="text-sm text-gray-500 mb-2">Brand: {car.brand}</p>
-            <p className="text-sm text-gray-500 mb-4">
-              Transmission: {car.transmission} | Fuel: {car.fuel}
-            </p>
+     
+      <div className="p-4 flex-1 flex flex-col justify-between">
+       
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="font-semibold text-gray-900 text-lg">
+              {car.name}
+            </h3>
+            <span className="text-xs font-medium bg-gray-900 text-white px-2 py-1 rounded-full">
+              {car.type}
+            </span>
+          </div>
 
-            {/* Booking Form */}
-            <form className="space-y-3">
-              <div>
-                <label className="text-sm font-medium text-gray-700">Pickup Date</label>
-                <input
-                  type="date"
-                  className="w-full border rounded-md px-2 py-1 mt-1"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium text-gray-700">Return Date</label>
-                <input
-                  type="date"
-                  className="w-full border rounded-md px-2 py-1 mt-1"
-                />
-              </div>
-            </form>
+         
+          <p className="text-gray-500 text-sm mb-3">{car.brand}</p>
 
-            {/* Buttons */}
-            <div className="flex justify-end mt-5 gap-3">
-              <button
-                onClick={handleClose}
-                className="px-4 py-2 bg-gray-300 rounded-md text-gray-800 hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleConfirm}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                Confirm Rent
-              </button>
+         
+          <div className="flex items-center justify-between gap-4 text-gray-600 text-sm mb-3">
+            <div className="flex items-center gap-1">
+              <Users className="w-4 h-4" /> {car.seats}
+            </div>
+            <div className="flex items-center gap-1">
+              <Gauge className="w-4 h-4" /> {car.transmission}
+            </div>
+            <div className="flex items-center gap-1">
+              <Fuel className="w-4 h-4" /> {car.fuel}
             </div>
           </div>
+
+        
+          <ul className="text-sm text-gray-600 space-y-1 mb-4">
+            {car.features.map((feature, i) => (
+              <li key={i} className="flex items-center gap-2">
+                <span className="text-green-500">✓</span> {feature}
+              </li>
+            ))}
+          </ul>
+
+        
+        <div className="flex justify-end">
+          <button
+            disabled={!car.available}
+            className={`px-5 py-2 rounded-xl text-sm font-medium transition ${
+              car.available
+                ? "bg-blue-600 text-white hover:bg-blue-700"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
+          >
+            Rent Now
+          </button>
         </div>
-      )}
-    </>
+
+        </div>
+
+      </div>
+    </div>
   );
 };
 
