@@ -1,0 +1,40 @@
+// src/data/cars.js
+
+export const cars = [
+  {
+    id: 1,
+    name: "Honda Civic",
+    brand: "Honda",
+    type: "Sedan",
+    seats: 5,
+    transmission: "Manual",
+    fuel: "Petrol",
+    features: ["Fuel Efficient", "Apple CarPlay"],
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d6/2020_Honda_Civic_1.5_TC.jpg",
+    available: false,
+  },
+  {
+    id: 2,
+    name: "Toyota Camry",
+    brand: "Toyota",
+    type: "Sedan",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Hybrid",
+    features: ["Hybrid Engine", "Backup Camera"],
+    image: "https://imgd-ct.aeplcdn.com/1056x660/n/cw/ec/192443/camry-exterior-left-front-three-quarter-16.jpeg?isig=0&q=80",
+    available: true,
+  },
+  {
+    id: 3,
+    name: "Tesla Model 3",
+    brand: "Tesla",
+    type: "Electric",
+    seats: 5,
+    transmission: "Automatic",
+    fuel: "Electric",
+    features: ["Autopilot", "Premium Audio"],
+    image: "https://hips.hearstapps.com/vidthumb/images/thumbnail-1590111837.jpg?crop=1.00xw:1.00xh;0,0",
+    available: true,
+  },
+];
