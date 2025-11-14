@@ -28,7 +28,7 @@ app.get("/api/cars", (req, res) => {
       transmission: "Manual",
       fuel: "Petrol",
       features: ["Fuel Efficient", "Apple CarPlay"],
-      available: false,
+      available: true,
       image: "https://imgd.aeplcdn.com/370x208/n/cw/ec/57779/right-rear-three-quarter0.jpeg?wm=1&q=80"
     },
     {
