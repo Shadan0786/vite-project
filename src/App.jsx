@@ -10,7 +10,7 @@ import Signup from './components/Signup';
 
 function App() {
 
-  // MUST BE AT THE TOP
+  
   const [user, setUser] = useState(null);
 
   const [activeTab, setActiveTab] = useState('browse');
@@ -24,12 +24,12 @@ function App() {
         user={user}
         setUser={setUser}
         openLogin={() => {
-          setShowSignup(false);  // close signup
-          setShowLogin(true);    // open login
+          setShowSignup(false); 
+          setShowLogin(true);   
         }}
         openSignup={() => {
-          setShowLogin(false);   // close login
-          setShowSignup(true);   // open signup
+          setShowLogin(false);   
+          setShowSignup(true);  
         }}
       />
 

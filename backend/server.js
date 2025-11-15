@@ -1,4 +1,4 @@
-// server.js
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -8,16 +8,15 @@ dotenv.config();
 
 const app = express();
 
-// Middlewares
 app.use(cors({
-  origin: "http://localhost:5173",   // Vite
+  origin: "http://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
 }));
 
 app.use(express.json());
 
-// Test Route
+
 app.get("/api/cars", (req, res) => {
   res.json([
     {
@@ -42,19 +41,30 @@ app.get("/api/cars", (req, res) => {
       available: false,
       image: "https://bmw.scene7.com/is/image/BMW/f95_standalone-f95_carousel-columns_exterior_m60xdrive_msportpackage?wid=2559&hei=2560"
     },
+    {
+      name: "innova crysta",
+      brand: "Toyota",
+      type: "MPV",
+      seats: 7,
+      transmission: "Manual",
+      fuel: "Diesel",
+      features: ["Fuel Efficient", "Apple CarPlay"],
+      available: false,
+      image: "https://marketplace-cdn.cars24.com/production/41014402746/main%20image/2025-11-04/car_replace_bg_8ea0c0b7-4ea1-4d47-aaa4-750847a8cc01.png?w=200&format=auto&dpr=2&pad=48,0,0,0&trim-color=auto"
+    },
   ]);
 });
 
 
-// connect mongo
+
 mongoose.connect("mongodb://127.0.0.1:27017/quickrent")
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.log(err));
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
 
-// API routes
-app.use("/api/auth", authRoutes);  
 
-// Start Server
+app.use("/api/auth", authRoutes);
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

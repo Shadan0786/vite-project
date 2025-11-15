@@ -6,9 +6,9 @@ import authMiddleware from "../middleware/authMiddleware.js";
 
 
 const router = express.Router();
-const JWT_SECRET = "MY_SECRET_KEY"; // move to .env later
+const JWT_SECRET = "MY_SECRET_KEY"; 
 
-// Signup API
+
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -36,7 +36,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// Login API
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
