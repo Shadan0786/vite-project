@@ -21,11 +21,6 @@ router.post("/add", async (req, res) => {
   }
 });
 
-
-
-
-
-
 router.post("/rent", rentCar);         
 
 

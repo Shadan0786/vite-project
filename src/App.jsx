@@ -67,24 +67,6 @@ function App() {
   setUser(null);
 };
 
-const handleRent = async () => {
-  const res = await fetch("http://localhost:5000/api/rent/rent", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      userId: localStorage.getItem("userId"),
-      carId: selectedCar._id
-    }),
-  });
-
-  const data = await res.json();
-  if (res.ok) {
-    alert("Car rented successfully!");
-    closeModal();
-  } else {
-    alert(data.message);
-  }
-};
 
 
 
