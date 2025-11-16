@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CarCard from "./CarCard";
 
-const CarList = () => {
+const CarList = ({ user, onRentClick }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/cars")
-      .then((res) => {
-        console.log("Connected:", res.data);
-        setCars(res.data); // backend data
-      })
+      .then((res) => setCars(res.data))
       .catch((err) => console.log("Error:", err.message));
   }, []);
 
@@ -22,7 +19,14 @@ const CarList = () => {
           Loading cars...
         </p>
       ) : (
-        cars.map((car, index) => <CarCard key={index} car={car} />)
+        cars.map((car) => (
+          <CarCard
+            key={car._id}
+            car={car}
+            user={user}
+            onRentClick={onRentClick}
+          />
+        ))
       )}
     </div>
   );
